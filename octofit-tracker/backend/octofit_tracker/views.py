@@ -1,5 +1,6 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
+from rest_framework.decorators import api_view
 from rest_framework import status
 from .models import User, Team, Activity, Workout, Leaderboard
 from .serializers import UserSerializer, TeamSerializer, ActivitySerializer, WorkoutSerializer, LeaderboardSerializer
@@ -34,11 +35,12 @@ class LeaderboardList(APIView):
         serializer = LeaderboardSerializer(leaderboard, many=True)
         return Response(serializer.data)
 
+@api_view(['GET'])
 def api_root(request):
     return Response({
-        'users': '/users/',
-        'teams': '/teams/',
-        'activities': '/activities/',
-        'workouts': '/workouts/',
-        'leaderboard': '/leaderboard/',
+        'users': 'https://scaling-goggles-jxxv749g9g3pqv9-8000.app.github.dev/users/',
+        'teams': 'https://scaling-goggles-jxxv749g9g3pqv9-8000.app.github.dev/teams/',
+        'activities': 'https://scaling-goggles-jxxv749g9g3pqv9-8000.app.github.dev/activities/',
+        'workouts': 'https://scaling-goggles-jxxv749g9g3pqv9-8000.app.github.dev/workouts/',
+        'leaderboard': 'https://scaling-goggles-jxxv749g9g3pqv9-8000.app.github.dev/leaderboard/',
     })
